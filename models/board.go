@@ -10,6 +10,7 @@ var board *Board
 type Board struct {
 	PlayerA      *Player
 	PlayerB      *Player
+	Winner *Player
 	GameProgress int
 	GameStatus   GameStatus.Status
 	Situation    uint16
@@ -35,8 +36,13 @@ func (b *Board)Move(step Step)(bool, error){
 	if err != nil {
 		return false, err
 	}
+	GetBoard().GameProgress += 1
+	if GetBoard().GameProgress == 9 {
+		GetBoard().GameStatus = GameStatus.Finished
+	}
 	mover.PrivateSituation = situationRes
 	if CheckWin(mover.PrivateSituation) {
+		GetBoard().Winner = mover
 		return true, nil
 	}
 	return false,  nil
