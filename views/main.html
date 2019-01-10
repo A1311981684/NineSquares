@@ -4,14 +4,165 @@
     <script src="../static/js/jquery-3.0.0.min.js"></script>
 </head>
 <body>
-<div id="operation">
-    <div>
-        Add your html code here.
-    </div>
-</div>
-
+<table border="1">
+    <tr>
+        <th><input type="button" value=" "  id="stamp1" style="width: 25px;height: 25px"></th>
+        <!--<input type="button" value=""  id="stamp2">-->
+        <!--<input type="button" value=""  id="stamp3">-->
+        <th><input type="button" value=" "  id="stamp2" style="width: 25px;height: 25px"></th>
+        <th><input type="button" value=" "  id="stamp3" style="width: 25px;height: 25px"></th>
+    </tr>
+    <tr>
+        <th><input type="button" value=" "  id="stamp4" style="width: 25px;height: 25px"></th>
+        <!--<input type="button" value=""  id="stamp2">-->
+        <!--<input type="button" value=""  id="stamp3">-->
+        <th><input type="button" value=" "  id="stamp5" style="width: 25px;height: 25px"></th>
+        <th><input type="button" value=" "  id="stamp6" style="width: 25px;height: 25px"></th>
+    </tr>
+    <tr>
+        <th><input type="button" value=" "  id="stamp7" style="width: 25px;height: 25px"></th>
+        <!--<input type="button" value=""  id="stamp2">-->
+        <!--<input type="button" value=""  id="stamp3">-->
+        <th><input type="button" value=" "  id="stamp8" style="width: 25px;height: 25px"></th>
+        <th><input type="button" value=" "  id="stamp9" style="width: 25px;height: 25px"></th>
+    </tr>
+</table>
 <script>
-    console.log("Hello World!")
+    //取stamp，
+    var currentPlayer = 0;
+
+    var P1 = {
+        id : 0,
+        name : "紅一葉",
+        shape : 0
+    };
+    var P2 = {
+        id : 1,
+        name : "啦啦啦",
+        shape : 1
+    };
+
+    $(function(){https://cdn.bootcss.com/jquery/3.3.1/jquery.js
+
+        // test 的点击事件
+        $("#stamp1").click(function(){
+
+            var stamp1 = document.getElementById("stamp1");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp1').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp1').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp2").click(function(){
+
+            var stamp1 = document.getElementById("stamp2");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp2').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp2').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp3").click(function(){
+
+            var stamp1 = document.getElementById("stamp3");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp3').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp3').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp4").click(function(){
+
+            var stamp1 = document.getElementById("stamp4");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp4').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp4').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp5").click(function(){
+
+            var stamp1 = document.getElementById("stamp5");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp5').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp5').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp6").click(function(){
+
+            var stamp1 = document.getElementById("stamp6");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp6').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp6').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp7").click(function(){
+
+            var stamp1 = document.getElementById("stamp7");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp7').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp7').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp8").click(function(){
+
+            var stamp1 = document.getElementById("stamp8");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp8').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp8').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+        $("#stamp9").click(function(){
+
+            var stamp1 = document.getElementById("stamp9");//设置盖章按钮为不可用
+            stamp1.disabled=true;
+            if (P1.id === currentPlayer){
+                $('#stamp9').val(P1.shape);
+                currentPlayer = 1;
+            }else if (P2.id === currentPlayer)
+            {
+                $('#stamp9').val(P2.shape);
+                currentPlayer = 0;
+            }
+        });
+    })
 </script>
 
 </body>
