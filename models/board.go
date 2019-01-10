@@ -32,6 +32,11 @@ func (b *Board)Move(step Step)(bool, error){
 		return false, fmt.Errorf("player id not exist: %d", step.Mover)
 	}
 	log.Println("mover is:", mover)
+	for k, v := range playerMap {
+		if v.Id != mover.Id {
+			playerMap[k].CanMove = true
+		}
+	}
 	situationRes, err := convertor.SetBoardBit(mover.PrivateSituation, competitor.PrivateSituation, step.Pos.Row, step.Pos.Col)
 	if err != nil {
 		return false, err

@@ -97,3 +97,7 @@ func (b *BoardController)NewBoard(){
 	beegoServe.BeegoServeJson(&b.Controller, "start game success", 200)
 	return
 }
+
+func (b *BoardController) Views(){
+	b.TplName = "main.html"
+}

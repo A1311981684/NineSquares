@@ -282,6 +282,8 @@ definitions:
     title: Player
     type: object
     properties:
+      CanMove:
+        type: boolean
       Id:
         type: integer
         format: int64
