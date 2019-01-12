@@ -11,24 +11,6 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
-  /board/board:
-    put:
-      tags:
-      - board
-      description: start a new game board
-      operationId: BoardController.New board
-      parameters:
-      - in: body
-        name: players
-        description: player one and player two
-        required: true
-        schema:
-          $ref: '#/definitions/models.GamePlayer'
-      responses:
-        "200":
-          description: operation success
-        "500":
-          description: operation failed
   /board/move:
     post:
       tags:
@@ -47,6 +29,24 @@ paths:
           description: move success
         "500":
           description: move failed
+  /board/newGame:
+    put:
+      tags:
+      - board
+      description: start a new game board
+      operationId: BoardController.New board
+      parameters:
+      - in: body
+        name: players
+        description: player one and player two
+        required: true
+        schema:
+          $ref: '#/definitions/models.GamePlayer'
+      responses:
+        "200":
+          description: operation success
+        "500":
+          description: operation failed
   /object/:
     get:
       tags:
@@ -307,10 +307,10 @@ definitions:
     title: Position
     type: object
     properties:
-      Col:
+      ARow:
         type: integer
         format: int64
-      Row:
+      BCol:
         type: integer
         format: int64
   models.Profile:
