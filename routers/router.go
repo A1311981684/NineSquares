@@ -14,6 +14,7 @@ import (
 )
 
 func init() {
+	beego.Router("/views", &controllers.BoardController{}, "get:Views")
 	ns := beego.NewNamespace("/v1",
 		beego.NSNamespace("/object",
 			beego.NSInclude(

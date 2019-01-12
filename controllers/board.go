@@ -1,11 +1,13 @@
 package controllers
 
 import (
+	"NineSquares/GameStatus"
 	"NineSquares/models"
 	"encoding/json"
 	"github.com/astaxie/beego"
 	"log"
 	"strconv"
+	"wzjTools/beegoServe"
 )
 
 type BoardController struct {
@@ -19,29 +21,43 @@ type BoardController struct {
 //@Failure 500 move failed
 //@router /move [post]
 func (b *BoardController)Move(){
-	var step models.Step
-	err := json.Unmarshal(b.Ctx.Input.RequestBody, &step)
-	if err != nil {
-		b.Data["json"] = err.Error()
-		b.ServeJSON()
+
+	bd := models.GetBoard()
+	if 	bd.GameStatus == GameStatus.Finished{
+		beegoServe.BeegoServeJson(&b.Controller, "game over:"+models.GetBoard().Winner.Name+" win!", 200)
 		return
 	}
 
-	bd := models.GetBoard()
+	var step models.Step
+	err := json.Unmarshal(b.Ctx.Input.RequestBody, &step)
+	if err != nil {
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "move failed:" + err.Error(), 500)
+		return
+	}
+
 	win, err := bd.Move(step)
 	if err != nil {
-		b.Data["json"] = err.Error()
-		b.ServeJSON()
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "move failed:"+err.Error(), 500)
 		return
 	}
 	if win {
-		b.Data["json"] = strconv.Itoa(step.Mover)+" "+"win!"
-		b.ServeJSON()
+		p, err := models.GetPlayer(step.Mover)
+		if err != nil {
+			log.Println(err.Error())
+			beegoServe.BeegoServeJson(&b.Controller, "assert failed"+err.Error(), 500)
+			return
+		}
+		bd.GameStatus = GameStatus.Finished
+		beegoServe.BeegoServeJson(&b.Controller, strconv.Itoa(p.Id)+":"+p.Name+" "+"win!", 200)
 		return
 	}
-	log.Println("move success: ", step)
-	b.Data["json"] = "move OK"
-	b.ServeJSON()
+	if models.GetBoard().GameStatus == GameStatus.Finished {
+		beegoServe.BeegoServeJson(&b.Controller, "game over, everybody is winner!", 200)
+		return
+	}
+	beegoServe.BeegoServeJson(&b.Controller, "move success", 200)
 	return
 }
 
@@ -55,18 +71,33 @@ func (b *BoardController)NewBoard(){
 	var players models.GamePlayer
 	err := json.Unmarshal(b.Ctx.Input.RequestBody, &players)
 	if err != nil {
-		b.Data["json"] = err.Error()
-		b.ServeJSON()
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "start game failed:"+err.Error(), 500)
 		return
 	}
 	if len(players.Players) != 2 {
-		b.Data["json"] = "invalid player amount"
-		b.ServeJSON()
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "invalid player amount:", 500)
+		return
+	}
+	err = models.AddPlayer(players.Players[0])
+	if err != nil {
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "start game failed:"+err.Error(), 500)
+		return
+	}
+	err = models.AddPlayer(players.Players[1])
+	if err != nil {
+		log.Println(err.Error())
+		beegoServe.BeegoServeJson(&b.Controller, "start game failed:"+err.Error(), 500)
 		return
 	}
 	models.NewBoard(players.Players[0], players.Players[1])
 	log.Println("added players:", players.Players[0], players.Players[1])
-	b.Data["json"] = "success"
-	b.ServeJSON()
+	beegoServe.BeegoServeJson(&b.Controller, "start game success", 200)
 	return
+}
+
+func (b *BoardController) Views(){
+	b.TplName = "main.html"
 }
