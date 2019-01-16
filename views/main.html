@@ -1,5 +1,7 @@
-<html>
+<html lang="en">
 <head>
+    <title >NineSquare</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="../static/js/vue.min.js"></script>
     <script src="../static/js/jquery-3.0.0.min.js"></script>
 </head>
@@ -27,7 +29,20 @@
         <th><input type="button" value=" "  id="stamp9" style="width: 25px;height: 25px"></th>
     </tr>
 </table>
+
+    <input type="button" value="restart"  id="stamp10" style="text-align:center; width: 50px;height: 19px" onclick="javascript:window.location.reload()">
+    <input type="button" value="Exit"  id="stamp11" style="text-align:center; width: 42px;height: 19px" onClick="custom_close()">
+
 <script>
+    function custom_close(){
+        if(confirm("Are you sure exit？")){
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+        }
+        else{
+        }
+    }
     //取stamp，
     var currentPlayer = 0;
 
@@ -162,6 +177,7 @@
                 currentPlayer = 0;
             }
         });
+
     })
 </script>
 
