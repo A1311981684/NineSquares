@@ -7,6 +7,7 @@
 </head>
 <body>
 <table border="1">
+    <!--按钮的建立-->
     <tr>
         <th><input type="button" value=" "  id="stamp1" style="width: 25px;height: 25px"></th>
         <!--<input type="button" value=""  id="stamp2">-->
@@ -29,11 +30,13 @@
         <th><input type="button" value=" "  id="stamp9" style="width: 25px;height: 25px"></th>
     </tr>
 </table>
-
-    <input type="button" value="restart"  id="stamp10" style="text-align:center; width: 50px;height: 19px" onclick="javascript:window.location.reload()">
+<!--重启按钮-->
+    <input type="button" value="restart"  id="stamp10" style="text-align:center; width: 50px;height: 19px" onclick="window.location.reload()">
+   <!--退出按钮-->
     <input type="button" value="Exit"  id="stamp11" style="text-align:center; width: 42px;height: 19px" onClick="custom_close()">
 
 <script>
+    //退出按钮
     function custom_close(){
         if(confirm("Are you sure exit？")){
             window.opener=null;
