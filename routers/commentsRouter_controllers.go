@@ -9,18 +9,18 @@ func init() {
 
     beego.GlobalControllerRouter["NineSquares/controllers:BoardController"] = append(beego.GlobalControllerRouter["NineSquares/controllers:BoardController"],
         beego.ControllerComments{
-            Method: "NewBoard",
-            Router: `/board`,
-            AllowHTTPMethods: []string{"put"},
+            Method: "Move",
+            Router: `/move`,
+            AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})
 
     beego.GlobalControllerRouter["NineSquares/controllers:BoardController"] = append(beego.GlobalControllerRouter["NineSquares/controllers:BoardController"],
         beego.ControllerComments{
-            Method: "Move",
-            Router: `/move`,
-            AllowHTTPMethods: []string{"post"},
+            Method: "NewBoard",
+            Router: `/newGame`,
+            AllowHTTPMethods: []string{"put"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})

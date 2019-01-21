@@ -6,6 +6,6 @@ type Step struct {
 }
 
 type Position struct {
-	Row int
-	Col int
+	ARow int
+	BCol int
 }

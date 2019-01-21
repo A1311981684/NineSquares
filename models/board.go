@@ -37,7 +37,7 @@ func (b *Board)Move(step Step)(bool, error){
 			playerMap[k].CanMove = true
 		}
 	}
-	situationRes, err := convertor.SetBoardBit(mover.PrivateSituation, competitor.PrivateSituation, step.Pos.Row, step.Pos.Col)
+	situationRes, err := convertor.SetBoardBit(mover.PrivateSituation, competitor.PrivateSituation, step.Pos.ARow, step.Pos.BCol)
 	if err != nil {
 		return false, err
 	}
